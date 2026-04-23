@@ -1,0 +1,20 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--vscode-editor-background, #1e1e1e);
+}
+
+canvas {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(100vw, 100vh);
+  height: min(100vw, 100vh);
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}

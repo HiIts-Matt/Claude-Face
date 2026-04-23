@@ -6,7 +6,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HiIts-Matt/claude-face"
+    "url": "https://github.com/HiIts-Matt/Claude-Face"
   },
   "engines": {
     "vscode": "^1.116.0"
@@ -34,7 +34,7 @@
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "check-types": "tsc --noEmit",
+    "check-types": "tsc --noEmit && tsc --noEmit -p src/webview/tsconfig.json",
     "lint": "eslint src",
     "test": "vscode-test"
   },
