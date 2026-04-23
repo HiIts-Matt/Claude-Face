@@ -128,10 +128,12 @@ function openPanel(context: vscode.ExtensionContext) {
 
   const distWebview = vscode.Uri.joinPath(context.extensionUri, 'dist', 'webview');
   currentPanel = vscode.window.createWebviewPanel(
-    'claudeFace', 'CLAUDE.FACE',
+    'claudeFace', 'Claude Status',
     vscode.ViewColumn.Two,
     { enableScripts: true, retainContextWhenHidden: true, localResourceRoots: [distWebview] }
   );
+
+  currentPanel.iconPath = vscode.Uri.joinPath(context.extensionUri, 'images', 'icon.png');
 
   const webview = currentPanel.webview;
   const cssUri    = webview.asWebviewUri(vscode.Uri.joinPath(distWebview, 'panel.css'));
