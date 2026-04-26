@@ -46,9 +46,20 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(bar);
   });
 
+  const STATES = ['idle', 'thinking', 'reading', 'writing', 'running_command', 'error', 'success', 'uncertain', 'actually'];
+
   context.subscriptions.push(
     vscode.commands.registerCommand('claude-face.show', () => openPanel(context)),
     vscode.commands.registerCommand('claude-face.setupHooks', () => setupHooks()),
+    vscode.commands.registerCommand('claude-face.previewState', async () => {
+      openPanel(context);
+      const choice = await vscode.window.showQuickPick(STATES, { placeHolder: 'Preview animation state' });
+      if (choice) { currentPanel?.webview.postMessage({ type: 'setState', state: choice }); }
+    }),
+    vscode.commands.registerCommand('claude-face.toggleDevMode', () => {
+      openPanel(context);
+      currentPanel?.webview.postMessage({ type: 'toggleDevMode' });
+    }),
     { dispose: () => server?.close() }
   );
 
@@ -139,7 +150,6 @@ function openPanel(context: vscode.ExtensionContext) {
   const cssUri    = webview.asWebviewUri(vscode.Uri.joinPath(distWebview, 'panel.css'));
   const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(distWebview, 'panel.js'));
   const htmlPath  = path.join(context.extensionPath, 'dist', 'webview', 'panel.html');
-
   webview.html = fs.readFileSync(htmlPath, 'utf-8')
     .replace(/\{\{cspSource\}\}/g, webview.cspSource)
     .replace(/\{\{cssUri\}\}/g,    cssUri.toString())

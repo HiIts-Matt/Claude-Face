@@ -21,7 +21,15 @@
     "commands": [
       {
         "command": "claude-face.show",
-        "title": "Show Claude Face"
+        "title": "Claude Face: Show"
+      },
+      {
+        "command": "claude-face.previewState",
+        "title": "Claude Face: Preview Animation State..."
+      },
+      {
+        "command": "claude-face.toggleDevMode",
+        "title": "Claude Face: Toggle Developer Mode"
       }
     ]
   },
