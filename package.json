@@ -3,7 +3,7 @@
   "displayName": "Claude Face",
   "description": "Animated face that reacts to what claude is doing",
   "publisher": "HiIts-Matt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/HiIts-Matt/Claude-Face"
