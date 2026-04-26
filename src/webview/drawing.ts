@@ -229,12 +229,12 @@ export function drawKeyboardProp(buf: Uint8Array, frameCount: number): void {
 }
 
 export function drawThoughtBubble(buf: Uint8Array, showDot1: boolean, showDot2: boolean, showBubble: boolean): void {
-  if (showDot1) { px(buf, 18, 12, 14); }
-  if (showDot2) { fillRect(buf, 17, 9, 2, 2, 14); }
+  if (showDot1) { px(buf, 11, 12, 14); }
+  if (showDot2) { fillRect(buf, 9, 9, 2, 2, 14); }
   if (showBubble) {
-    fillRect(buf, 15, 4, 6, 1, 14);
-    fillRect(buf, 14, 5, 8, 2, 14);
-    fillRect(buf, 15, 7, 6, 1, 14);
+    fillRect(buf, 9, 2, 18, 1, 14);
+    fillRect(buf, 8, 3, 20, 4, 14);
+    fillRect(buf, 9, 7, 18, 1, 14);
   }
 }
 
