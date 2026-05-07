@@ -61,10 +61,12 @@ function drawFrame(buf: Uint8Array): void {
 let activeAnim: Frame[] | null = null;
 let animFrameIdx = 0;
 let animLastTime = 0;
+let lastDrawnIdx = -1;
 
 function playAnim(frames: Frame[]): void {
   activeAnim   = frames;
   animFrameIdx = 0;
+  lastDrawnIdx = -1;
   animLastTime = performance.now();
 }
 
@@ -77,7 +79,10 @@ function animTick(now: number): void {
     animLastTime  = now;
     animFrameIdx  = (animFrameIdx + 1) % activeAnim.length;
   }
-  drawFrame(activeAnim[animFrameIdx].buf);
+  if (animFrameIdx !== lastDrawnIdx) {
+    lastDrawnIdx = animFrameIdx;
+    drawFrame(activeAnim[animFrameIdx].buf);
+  }
 }
 requestAnimationFrame(animTick);
 

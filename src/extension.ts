@@ -33,15 +33,15 @@ export function activate(context: vscode.ExtensionContext) {
 
   server.on('error', (err: NodeJS.ErrnoException) => {
     if (err.code === 'EADDRINUSE') {
-      vscode.window.showErrorMessage(`Claude Face: port ${PORT} is already in use. Is another instance running?`);
+      vscode.window.showErrorMessage(`Claude Crab: port ${PORT} is already in use. Is another instance running?`);
     }
   });
 
   server.listen(PORT, '127.0.0.1', () => {
     const bar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-    bar.text = '$(smiley) CLAUDE.FACE';
+    bar.text = '$(smiley) CLAUDE.CRAB';
     bar.tooltip = `Listening on http://localhost:${PORT}\nClick to open face`;
-    bar.command = 'claude-face.show';
+    bar.command = 'claude-crab.show';
     bar.show();
     context.subscriptions.push(bar);
   });
@@ -49,14 +49,14 @@ export function activate(context: vscode.ExtensionContext) {
   const STATES = ['idle', 'thinking', 'reading', 'writing', 'running_command', 'error', 'success', 'uncertain', 'actually'];
 
   context.subscriptions.push(
-    vscode.commands.registerCommand('claude-face.show', () => openPanel(context)),
-    vscode.commands.registerCommand('claude-face.setupHooks', () => setupHooks()),
-    vscode.commands.registerCommand('claude-face.previewState', async () => {
+    vscode.commands.registerCommand('claude-crab.show', () => openPanel(context)),
+    vscode.commands.registerCommand('claude-crab.setupHooks', () => setupHooks()),
+    vscode.commands.registerCommand('claude-crab.previewState', async () => {
       openPanel(context);
       const choice = await vscode.window.showQuickPick(STATES, { placeHolder: 'Preview animation state' });
       if (choice) { currentPanel?.webview.postMessage({ type: 'setState', state: choice }); }
     }),
-    vscode.commands.registerCommand('claude-face.toggleDevMode', () => {
+    vscode.commands.registerCommand('claude-crab.toggleDevMode', () => {
       openPanel(context);
       currentPanel?.webview.postMessage({ type: 'toggleDevMode' });
     }),
@@ -68,7 +68,7 @@ export function activate(context: vscode.ExtensionContext) {
   // On first run, prompt to wire up the hooks automatically.
   if (!hooksConfigured()) {
     vscode.window.showInformationMessage(
-      'Claude Face: hook Claude Code events to animate the face?',
+      'Claude Crab: hook Claude Code events to animate the crab?',
       'Set up hooks'
     ).then(choice => { if (choice) { setupHooks(); } });
   }
@@ -95,7 +95,7 @@ function setupHooks(): void {
 
   for (const event of HOOK_EVENTS) {
     settings.hooks[event] ??= [];
-    // Remove any stale claude-face entry for this port before re-adding.
+    // Remove any stale entry for this port before re-adding.
     settings.hooks[event] = (settings.hooks[event] as any[]).filter(
       (e: any) => !e?.hooks?.some((h: any) => h?.command?.includes(`localhost:${PORT}`))
     );
@@ -104,7 +104,7 @@ function setupHooks(): void {
 
   fs.mkdirSync(path.dirname(settingsPath), { recursive: true });
   fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
-  vscode.window.showInformationMessage('Claude Face: hooks written to ~/.claude/settings.json ✓');
+  vscode.window.showInformationMessage('Claude Crab: hooks written to ~/.claude/settings.json ✓');
 }
 
 function claudeSettingsPath(): string {
@@ -139,7 +139,7 @@ function openPanel(context: vscode.ExtensionContext) {
 
   const distWebview = vscode.Uri.joinPath(context.extensionUri, 'dist', 'webview');
   currentPanel = vscode.window.createWebviewPanel(
-    'claudeFace', 'Claude Status',
+    'claudeCrab', 'Claude Crab',
     vscode.ViewColumn.Two,
     { enableScripts: true, retainContextWhenHidden: true, localResourceRoots: [distWebview] }
   );

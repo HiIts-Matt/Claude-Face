@@ -1,7 +1,7 @@
 {
-  "name": "claude-face",
-  "displayName": "Claude Face",
-  "description": "Animated face that reacts to what claude is doing",
+  "name": "claude-crab",
+  "displayName": "Claude Crab",
+  "description": "Animated crab that reacts to what claude is doing",
   "publisher": "HiIts-Matt",
   "version": "0.0.2",
   "repository": {
@@ -20,16 +20,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "claude-face.show",
-        "title": "Claude Face: Show"
+        "command": "claude-crab.show",
+        "title": "Claude Crab: Show"
       },
       {
-        "command": "claude-face.previewState",
-        "title": "Claude Face: Preview Animation State..."
+        "command": "claude-crab.previewState",
+        "title": "Claude Crab: Preview Animation State..."
       },
       {
-        "command": "claude-face.toggleDevMode",
-        "title": "Claude Face: Toggle Developer Mode"
+        "command": "claude-crab.toggleDevMode",
+        "title": "Claude Crab: Toggle Developer Mode"
       }
     ]
   },

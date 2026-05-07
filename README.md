@@ -1,12 +1,12 @@
-# Claude Face
+# Claude Crab
 
 A VS Code extension that shows an animated pixel-art crab that reacts to what Claude Code is doing.
 
 ## Setup
 
 1. Install the extension
-2. Open the command palette and run **Claude Face: Set up hooks** to wire it into Claude Code
-3. The face appears automatically and updates as Claude works
+2. Open the command palette and run **Claude Crab: Set up hooks** to wire it into Claude Code
+3. The crab appears automatically and updates as Claude works
 
 ## States
 
