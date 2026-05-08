@@ -8,6 +8,7 @@ import { makeErrorAnim }    from './error';
 import { makeSuccessAnim }  from './success';
 import { makeUncertainAnim } from './uncertain';
 import { makeActuallyAnim } from './actually';
+import { makeCompactingAnim } from './compacting';
 
 export const ANIMS: Record<string, Frame[]> = {
   idle:            makeCrabBob(),
@@ -19,6 +20,7 @@ export const ANIMS: Record<string, Frame[]> = {
   success:         makeSuccessAnim(),
   uncertain:       makeUncertainAnim(),
   actually:        makeActuallyAnim(),
+  compacting:      makeCompactingAnim(),
 };
 
 export const TEMP_STATES: Record<string, number> = {
@@ -26,4 +28,5 @@ export const TEMP_STATES: Record<string, number> = {
   success:   3000,
   uncertain: 4000,
   actually:  3000,
+  compacting: 4000,
 };

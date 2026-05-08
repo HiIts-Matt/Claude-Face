@@ -263,3 +263,17 @@ export function drawExclamation(buf: Uint8Array): void {
   fillRect(buf, 28, 1, 2, 4, 10);
   fillRect(buf, 28, 6, 2, 2, 10);
 }
+
+export function drawCardboardBox(buf: Uint8Array, x: number, y: number, w: number, h: number): void {
+  // box body (brown)
+  fillRect(buf, x, y, w, h, 17);
+  // darker top edge (flaps)
+  fillRect(buf, x, y, w, 2, 18);
+  // flap gap line
+  px(buf, x + Math.floor(w / 2), y, 17);
+  px(buf, x + Math.floor(w / 2), y + 1, 17);
+  // tape stripe down center
+  fillRect(buf, x + Math.floor(w / 2) - 1, y + 2, 2, h - 2, 19);
+  // outline bottom
+  fillRect(buf, x, y + h - 1, w, 1, 18);
+}

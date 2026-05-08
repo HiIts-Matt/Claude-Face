@@ -9,7 +9,7 @@ const PORT = 57438;
 
 // The four hook events Claude Code fires. Each one pipes its JSON stdin
 // straight to our server with curl — that's the entire bridge.
-const HOOK_EVENTS = ['SessionStart', 'PreToolUse', 'PostToolUse', 'Stop', 'UserPromptSubmit'] as const;
+const HOOK_EVENTS = ['SessionStart', 'PreToolUse', 'PostToolUse', 'Stop', 'UserPromptSubmit', 'PreCompact', 'PostCompact'] as const;
 const HOOK_CMD = `curl -s -X POST http://localhost:${PORT} -H "Content-Type: application/json" -d @-`;
 
 let server: http.Server | undefined;
@@ -46,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(bar);
   });
 
-  const STATES = ['idle', 'thinking', 'reading', 'writing', 'running_command', 'error', 'success', 'uncertain', 'actually'];
+  const STATES = ['idle', 'thinking', 'reading', 'writing', 'running_command', 'error', 'success', 'uncertain', 'actually', 'compacting'];
 
   context.subscriptions.push(
     vscode.commands.registerCommand('claude-crab.show', () => openPanel(context)),
@@ -123,6 +123,8 @@ function classifyEvent(event: any): string {
     return 'thinking';
   }
   if (hook === 'PostToolUse') { return 'thinking'; }
+  if (hook === 'PreCompact') { return 'compacting'; }
+  if (hook === 'PostCompact') { return 'idle'; }
   if (hook === 'Stop') {
     const msg = ((event.last_assistant_message ?? '') as string).toLowerCase();
     if (/\b(actually|wait|hmm|hold on)\b/.test(msg)) { return 'actually'; }
