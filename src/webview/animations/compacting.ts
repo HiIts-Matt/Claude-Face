@@ -105,30 +105,30 @@ export function makeCompactingAnim(): Frame[] {
   const frames: Frame[] = [];
 
   // Initial jump onto box
-  frames.push({ buf: makeJumpUp(0), dur: 120 });
-  frames.push({ buf: makeJumpUp(1), dur: 120 });
-  frames.push({ buf: makeJumpUp(2), dur: 100 });
+  frames.push({ buf: makeJumpUp(0), dur: 7 });
+  frames.push({ buf: makeJumpUp(1), dur: 7 });
+  frames.push({ buf: makeJumpUp(2), dur: 6 });
   // first landing — box crushes from 8 to 6
-  frames.push({ buf: makeLanding(1), dur: 200 });
+  frames.push({ buf: makeLanding(1), dur: 12 });
 
   // second jump
-  frames.push({ buf: makePreJump(1), dur: 150 });
-  frames.push({ buf: makeAirborne(1, 3), dur: 120 });
-  frames.push({ buf: makeAirborne(1, 5), dur: 120 });
-  frames.push({ buf: makeAirborne(1, 3), dur: 100 });
+  frames.push({ buf: makePreJump(1), dur: 9 });
+  frames.push({ buf: makeAirborne(1, 3), dur: 7 });
+  frames.push({ buf: makeAirborne(1, 5), dur: 7 });
+  frames.push({ buf: makeAirborne(1, 3), dur: 6 });
   // second landing — box crushes from 6 to 4
-  frames.push({ buf: makeLanding(2), dur: 200 });
+  frames.push({ buf: makeLanding(2), dur: 12 });
 
   // third jump
-  frames.push({ buf: makePreJump(2), dur: 150 });
-  frames.push({ buf: makeAirborne(2, 3), dur: 120 });
-  frames.push({ buf: makeAirborne(2, 5), dur: 120 });
-  frames.push({ buf: makeAirborne(2, 3), dur: 100 });
+  frames.push({ buf: makePreJump(2), dur: 9 });
+  frames.push({ buf: makeAirborne(2, 3), dur: 7 });
+  frames.push({ buf: makeAirborne(2, 5), dur: 7 });
+  frames.push({ buf: makeAirborne(2, 3), dur: 6 });
   // final landing — box is flat
-  frames.push({ buf: makeLanding(3), dur: 200 });
+  frames.push({ buf: makeLanding(3), dur: 12 });
 
   // triumphant pose on flat box
-  frames.push({ buf: makeFlatBox(), dur: 600 });
+  frames.push({ buf: makeFlatBox(), dur: 36 });
 
   return frames;
 }

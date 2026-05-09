@@ -12,7 +12,7 @@ function makeReadingCrab(oy: number, gleamOff: number): Uint8Array {
 
 export function makeReadingAnim(): Frame[] {
   return [
-    { buf: makeReadingCrab(0, 0), dur: 600 },
-    { buf: makeReadingCrab(1, 2), dur: 600 },
+    { buf: makeReadingCrab(0, 0), dur: 36 },
+    { buf: makeReadingCrab(1, 2), dur: 36 },
   ];
 }

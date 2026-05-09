@@ -58,26 +58,36 @@ function drawFrame(buf: Uint8Array): void {
 
 // ─── ANIMATION ENGINE ────────────────────────────────────────────────────────
 
+let tick = 0;
 let activeAnim: Frame[] | null = null;
 let animFrameIdx = 0;
-let animLastTime = 0;
+let frameStartTick = 0;
 let lastDrawnIdx = -1;
+let resetAtTick: number | null = null;
 
-function playAnim(frames: Frame[]): void {
-  activeAnim   = frames;
-  animFrameIdx = 0;
-  lastDrawnIdx = -1;
-  animLastTime = performance.now();
+function playAnim(frames: Frame[], resetAfter?: number): void {
+  activeAnim     = frames;
+  animFrameIdx   = 0;
+  lastDrawnIdx   = -1;
+  frameStartTick = tick;
+  resetAtTick    = resetAfter !== undefined ? tick + resetAfter : null;
 }
 
-function animTick(now: number): void {
+function animTick(): void {
   requestAnimationFrame(animTick);
+  tick++;
   if (!activeAnim) { return; }
-  const elapsed = now - animLastTime;
-  const frame   = activeAnim[animFrameIdx];
-  if (elapsed >= frame.dur) {
-    animLastTime  = now;
-    animFrameIdx  = (animFrameIdx + 1) % activeAnim.length;
+
+  if (resetAtTick !== null && tick >= resetAtTick) {
+    resetAtTick = null;
+    playAnim(ANIMS.idle);
+    return;
+  }
+
+  const frame = activeAnim[animFrameIdx];
+  if (tick - frameStartTick >= frame.dur) {
+    frameStartTick = tick;
+    animFrameIdx   = (animFrameIdx + 1) % activeAnim.length;
   }
   if (animFrameIdx !== lastDrawnIdx) {
     lastDrawnIdx = animFrameIdx;
@@ -90,16 +100,10 @@ playAnim(ANIMS.idle);
 
 // ─── MESSAGE HANDLER ─────────────────────────────────────────────────────────
 
-let resetTimer: ReturnType<typeof setTimeout> | null = null;
-
 window.addEventListener('message', (e: MessageEvent<{ type: string; state?: string }>) => {
   if (e.data?.type === 'setState') {
     const state = e.data.state!;
-    if (resetTimer !== null) { clearTimeout(resetTimer); }
-    playAnim(ANIMS[state] ?? ANIMS.idle);
-    if (TEMP_STATES[state]) {
-      resetTimer = setTimeout(() => playAnim(ANIMS.idle), TEMP_STATES[state]);
-    }
+    playAnim(ANIMS[state] ?? ANIMS.idle, TEMP_STATES[state]);
   }
   if (e.data?.type === 'toggleDevMode') {
     devMode = !devMode;

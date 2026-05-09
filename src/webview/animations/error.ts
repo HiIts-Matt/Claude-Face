@@ -10,5 +10,5 @@ function makeErrorCrab(): Uint8Array {
 }
 
 export function makeErrorAnim(): Frame[] {
-  return [{ buf: makeErrorCrab(), dur: 9999 }];
+  return [{ buf: makeErrorCrab(), dur: 600 }];
 }

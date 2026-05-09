@@ -24,9 +24,8 @@ export const ANIMS: Record<string, Frame[]> = {
 };
 
 export const TEMP_STATES: Record<string, number> = {
-  error:     4000,
-  success:   3000,
-  uncertain: 4000,
-  actually:  3000,
-  compacting: 4000,
+  error:     240,
+  success:   180,
+  uncertain: 240,
+  actually:  180,
 };

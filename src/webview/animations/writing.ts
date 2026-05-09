@@ -13,9 +13,9 @@ function makeWritingCrab(oy: number, tipX: number): Uint8Array {
 
 export function makeWritingAnim(): Frame[] {
   return [
-    { buf: makeWritingCrab(0, 10), dur: 220 },
-    { buf: makeWritingCrab(1, 14), dur: 220 },
-    { buf: makeWritingCrab(0, 18), dur: 220 },
-    { buf: makeWritingCrab(1, 22), dur: 220 },
+    { buf: makeWritingCrab(0, 10), dur: 13 },
+    { buf: makeWritingCrab(1, 14), dur: 13 },
+    { buf: makeWritingCrab(0, 18), dur: 13 },
+    { buf: makeWritingCrab(1, 22), dur: 13 },
   ];
 }

@@ -16,10 +16,10 @@ export function makeThinkingAnim(): Frame[] {
   const f2 = makeThinkingCrab(true,  true,  false);
   const f3 = makeThinkingCrab(true,  true,  true);
   return [
-    { buf: f0, dur: 400 },
-    { buf: f1, dur: 300 },
-    { buf: f2, dur: 300 },
-    { buf: f3, dur: 500 },
-    { buf: f3, dur: 500 },
+    { buf: f0, dur: 24 },
+    { buf: f1, dur: 18 },
+    { buf: f2, dur: 18 },
+    { buf: f3, dur: 30 },
+    { buf: f3, dur: 30 },
   ];
 }

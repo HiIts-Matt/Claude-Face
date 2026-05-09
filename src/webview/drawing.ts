@@ -270,8 +270,7 @@ export function drawCardboardBox(buf: Uint8Array, x: number, y: number, w: numbe
   // darker top edge (flaps)
   fillRect(buf, x, y, w, 2, 18);
   // flap gap line
-  px(buf, x + Math.floor(w / 2), y, 17);
-  px(buf, x + Math.floor(w / 2), y + 1, 17);
+  fillRect(buf, x + Math.floor(w / 2) - 1, y, 2, 2, 17);
   // tape stripe down center
   fillRect(buf, x + Math.floor(w / 2) - 1, y + 2, 2, h - 2, 19);
   // outline bottom

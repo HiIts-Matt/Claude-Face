@@ -14,9 +14,9 @@ export function makeSuccessAnim(): Frame[] {
   const f1 = makeSuccessCrab(10);
   const f2 = makeSuccessCrab(16);
   return [
-    { buf: f1, dur: 300 },
-    { buf: f2, dur: 300 },
-    { buf: f1, dur: 300 },
-    { buf: f2, dur: 300 },
+    { buf: f1, dur: 18 },
+    { buf: f2, dur: 18 },
+    { buf: f1, dur: 18 },
+    { buf: f2, dur: 18 },
   ];
 }

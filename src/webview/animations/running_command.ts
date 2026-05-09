@@ -14,7 +14,7 @@ function makeCommandCrab(oy: number, frameCount: number): Uint8Array {
 export function makeCommandAnim(): Frame[] {
   const frames: Frame[] = [];
   for (let w = 0; w <= 10; w++) {
-    frames.push({ buf: makeCommandCrab(0, w), dur: 80 });
+    frames.push({ buf: makeCommandCrab(0, w), dur: 5 });
   }
   return frames;
 }

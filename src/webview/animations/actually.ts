@@ -15,7 +15,7 @@ function makeActuallyCrab(oy: number): Uint8Array {
 
 export function makeActuallyAnim(): Frame[] {
   return [
-    { buf: makeActuallyCrab(0), dur: 400 },
-    { buf: makeActuallyCrab(1), dur: 400 },
+    { buf: makeActuallyCrab(0), dur: 24 },
+    { buf: makeActuallyCrab(1), dur: 24 },
   ];
 }

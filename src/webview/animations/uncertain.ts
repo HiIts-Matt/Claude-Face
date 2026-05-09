@@ -11,7 +11,7 @@ function makeUncertainCrab(irisOff: number): Uint8Array {
 
 export function makeUncertainAnim(): Frame[] {
   return [
-    { buf: makeUncertainCrab(0), dur: 350 },
-    { buf: makeUncertainCrab(2), dur: 350 },
+    { buf: makeUncertainCrab(0), dur: 21 },
+    { buf: makeUncertainCrab(2), dur: 21 },
   ];
 }

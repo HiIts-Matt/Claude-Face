@@ -11,7 +11,7 @@ function makeCrab(oy: number): Uint8Array {
 
 export function makeCrabBob(): Frame[] {
   return [
-    { buf: makeCrab(0), dur: 400 },
-    { buf: makeCrab(2), dur: 400 },
+    { buf: makeCrab(0), dur: 24 },
+    { buf: makeCrab(2), dur: 24 },
   ];
 }
